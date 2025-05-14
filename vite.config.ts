@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+// import componentTagger from 'vite-plugin-component-tagger'; // Uncomment if using this plugin
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,10 +11,10 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // Example: conditionally include a plugin in development mode
-    // Replace `yourDevPlugin()` with a real plugin if needed
-    ...(mode === 'development' ? [] : []), // or remove this line entirely if not needed
-  ],
+    // Conditionally add development plugins
+    // Uncomment and replace with real plugin if needed
+    // mode === 'development' && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
